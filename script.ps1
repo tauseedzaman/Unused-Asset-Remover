@@ -1,6 +1,6 @@
 # Define the public and views folders
-$publicFolder = "C:\Users\tauseedzaman\Desktop\laravel\thebenefactor.net\public"
-$viewsFolder = "C:\Users\tauseedzaman\Desktop\laravel\thebenefactor.net\resources\views"
+$publicFolder = "C:\bla\bla\public"
+$viewsFolder = "C:\bla\bla\resources\views"
 
 # Define a list of folders to exclude from the public folder scan (e.g., "public/storage", "public/tmp")
 $excludeFolders = @('storage', "tmp", 'chatify', 'build')

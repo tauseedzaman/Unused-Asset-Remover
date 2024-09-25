@@ -1,9 +1,12 @@
 # Define the public and views folders
-$publicFolder = "C:\bla\bla\public"
-$viewsFolder = "C:\bla\bla\resources\views"
+$publicFolder = "C:\yt\hospitalMS\public"
+$viewsFolder = "C:\yt\hospitalMS\resources\views"
 
 # Define a list of folders to exclude from the public folder scan (e.g., "public/storage", "public/tmp")
 $excludeFolders = @('storage', "tmp", 'chatify', 'build')
+
+# Define a list of files to exclude
+$excludeFiles = @('bg.png', "code.jpg", 'design.jpg', 'service-bg.png', 'livewire.js', 'navbar-dropdowns.css', 'sidebar-default.css')
 
 $viewsFileExtention = "*.blade.php"
 
@@ -44,8 +47,19 @@ Where-Object {
 $viewFiles = Get-ChildItem -Path $viewsFolder -Recurse -Filter $viewsFileExtention
 
 foreach ($file in $filesInPublic) {
-    # Increment total files processed counter
     $totalFilesProcessed++
+
+    $exclude = $false
+    foreach ($excludeFile in $excludeFiles) {
+        if ($file.FullName -like "*\$excludeFile") {
+            $exclude = $true
+            break
+        }
+    }
+
+    if ($exclude) {
+        continue
+    }
 
     # Get the file name (without the full path)
     $fileName = $file.Name
